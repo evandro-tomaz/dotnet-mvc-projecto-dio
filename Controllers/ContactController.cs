@@ -56,5 +56,33 @@ namespace ProjetoMVC.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Details(int id)
+        {
+            var contact = _context.Contacts.Find(id);
+
+            if (contact == null) return RedirectToAction(nameof(Index));
+
+            return View(contact);
+        }
+
+        public IActionResult Remove(int id)
+        {
+            var contact = _context.Contacts.Find(id);
+
+            if (contact == null) return RedirectToAction(nameof(Index));
+
+            return View(contact);
+        }
+
+        [HttpPost]
+        public IActionResult Remove(Contact contact)
+        {
+            var contactDb = _context.Contacts.Find(contact.Id);
+            _context.Contacts.Remove(contactDb);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

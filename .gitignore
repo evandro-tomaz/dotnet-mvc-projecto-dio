@@ -2,4 +2,6 @@
 bin/
 obj/
 wwwroot/
+.vs/
 appsettings.Development.json
+*sln
